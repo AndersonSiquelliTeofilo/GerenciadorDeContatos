@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebApp.Data;
+using WebApp.Data.Interfaces;
+using WebApp.Data.Repository;
 
 namespace GerenciadorDeContatos
 {
@@ -21,6 +23,8 @@ namespace GerenciadorDeContatos
         {
             services.AddDbContext<AppContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddTransient<IContactRepository, ContactRepository>();
 
             services.AddControllersWithViews();
         }
