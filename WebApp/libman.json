@@ -5,6 +5,37 @@
     {
       "library": "jquery.mask@1.14.16",
       "destination": "wwwroot/lib/jquery.mask/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "datatables.net-bs4@1.11.5",
+      "destination": "wwwroot/lib/datatables.net-bs4/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "datatables.net@1.11.5",
+      "destination": "wwwroot/lib/datatables.net/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "datatables.net-buttons@2.2.2",
+      "destination": "wwwroot/lib/datatables.net-buttons/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "datatables.net-buttons-bs4@2.2.2",
+      "destination": "wwwroot/lib/datatables.net-buttons-bs4/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "jszip@3.9.1",
+      "destination": "wwwroot/lib/jszip/",
+      "files": [
+        "dist/jszip.js",
+        "dist/jszip.min.js",
+        "LICENSE.markdown",
+        "README.markdown"
+      ]
     }
   ]
 }
