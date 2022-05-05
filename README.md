@@ -12,22 +12,24 @@ O sistema de gerenciador de contatos, foi desenvolvido para cadastro, leitura, a
 
 ### Bibliotecas Back-end
 
-Biblioteca | Versão
-Entity Framework Core | 3.1.24
-Entity Framework Core Sql Server | 3.1.24
-Entity Framework Core Tools | 3.1.24
+|Biblioteca | Versão |
+|------|------|
+|Entity Framework Core | 3.1.24|
+|Entity Framework Core Sql Server | 3.1.24|
+|Entity Framework Core Tools | 3.1.24|
 
 ### Bibliotecas Front-end
 
-Biblioteca | Versão | Observação
-Bootstrap | 4.3.1 |
-JQuery | 3.5.1 |
-JQuery Mask | 1.14.16 |
-Datatables.net | 1.11.5 | Datatables
-Datatables.net bs 4 | 1.11.5 | Datatables
-Datatables.net buttons | 2.2.2 | Datatables
-Datatables.net buttons bs 4 | 2.2.2 | Datatables
-JsZip | 3.9.1 | Datatables
+|Biblioteca | Versão | Observação |
+|------|------|------|
+|Bootstrap | 4.3.1 ||
+|JQuery | 3.5.1 ||
+|JQuery Mask | 1.14.16 ||
+|Datatables.net | 1.11.5 | Datatables|
+|Datatables.net bs 4 | 1.11.5 | Datatables|
+|Datatables.net buttons | 2.2.2 | Datatables|
+|Datatables.net buttons bs 4 | 2.2.2 | Datatables|
+|JsZip | 3.9.1 | Datatables|
 
 ## Uso
 
