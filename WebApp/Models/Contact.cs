@@ -20,10 +20,12 @@ namespace WebApp.Models
         public string PhoneNumber { get; set; }
 
         [MaxLength(150, ErrorMessage = "O tamanho máximo permitido é de {1} caracteres")]
-        [EmailAddress]
+        [EmailAddress(ErrorMessage = "Formato de e-mail inválido, tente outro formato")]
         public string Email { get; set; }
 
-        public DateTime BirthDate { get; set; }
+        [DataType(DataType.Date, ErrorMessage = "Formato de data inválido, tente outro formato")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime? BirthDate { get; set; }
 
         public string GetFullName()
         {

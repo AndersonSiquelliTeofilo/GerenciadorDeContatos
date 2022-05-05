@@ -1,0 +1,43 @@
+﻿@model List<Contact>
+@{
+    ViewData["Title"] = "Contatos";
+}
+<section class="container mb-3">
+    <div class="row">
+        <div class="col-lg-12">
+            <a href="@Url.Action("Create", "Contact")" class="btn btn-success">Cadastrar novo contato</a>
+        </div>
+    </div>
+</section>
+<section class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table table-hover">
+                <thread>
+                    <tr>
+                        <th>Nome completo</th>
+                        <th>Telefone</th>
+                        <th>E-mail</th>
+                        <th>Data de Nascimento</th>
+                        <th></th>
+                    </tr>
+                </thread>
+                <tbody>
+                    @foreach (Contact contact in Model)
+                    {
+                        <tr>
+                            <td>@contact.GetFullName()</td>
+                            <td>@contact.PhoneNumber</td>
+                            <td><a href="mailto:@(@contact.Email)">@contact.Email</a></td>
+                            <td>@contact.BirthDate?.ToString("dd/MM/yyyy")</td>
+                            <td>
+                                <a href="@Url.Action("Edit", "Contact", new { id = contact.Id })" class="btn btn-primary">Editar</a>
+                                <a href="@Url.Action("Delete", "Contact", new { id = contact.Id })" class="btn btn-danger">Deletar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

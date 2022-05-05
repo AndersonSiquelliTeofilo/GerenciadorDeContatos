@@ -79,6 +79,7 @@ namespace WebApp.Data.Repository
                 if (exist == false)
                 {
                     await _context.Contacts.AddAsync(contact);
+                    await _context.SaveChangesAsync();
                     return true;
                 }
             }
@@ -99,6 +100,7 @@ namespace WebApp.Data.Repository
                 if (exist)
                 {
                     _context.Contacts.Update(contact);
+                    await _context.SaveChangesAsync();
                     return true;
                 }
             }
@@ -120,6 +122,7 @@ namespace WebApp.Data.Repository
                 {
                     Contact contact = await GetByIdAsync(id);
                     _context.Contacts.Remove(contact);
+                    await _context.SaveChangesAsync();
                     return true;
                 }
             }
