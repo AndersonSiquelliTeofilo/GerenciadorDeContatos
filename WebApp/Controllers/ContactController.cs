@@ -159,7 +159,7 @@ namespace WebApp.Controllers
 
                 if (deleted)
                 {
-                    TempData["Warning"] = "Contato deletado sucesso";
+                    TempData["Warning"] = "Contato deletado com sucesso";
                 }
                 else
                 {
