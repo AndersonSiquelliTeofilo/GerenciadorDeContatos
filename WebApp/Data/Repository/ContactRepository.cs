@@ -11,10 +11,12 @@ namespace WebApp.Data.Repository
     public class ContactRepository : IContactRepository
     {
         private readonly AppContext _context;
+        private readonly IErrorLogRepository _errorLogRepository;
 
-        public ContactRepository(AppContext context)
+        public ContactRepository(AppContext context, IErrorLogRepository errorLogRepository)
         {
             _context = context;
+            _errorLogRepository = errorLogRepository;
         }
 
         public async Task<List<Contact>> GetAllAsync()
@@ -27,6 +29,7 @@ namespace WebApp.Data.Repository
             }
             catch (Exception e)
             {
+                await _errorLogRepository.SaveExceptionAsync("ContactRepository", "GetAllAsync", e);
                 throw e;
             }
         }
@@ -41,6 +44,7 @@ namespace WebApp.Data.Repository
             }
             catch (Exception e)
             {
+                await _errorLogRepository.SaveExceptionAsync("ContactRepository", "GetByIdAsync", e);
                 throw e;
             }
         }
@@ -53,6 +57,7 @@ namespace WebApp.Data.Repository
             }
             catch (Exception e)
             {
+                await _errorLogRepository.SaveExceptionAsync("ContactRepository", "IsCreatedAsync", e);
                 throw e;
             }
         }
@@ -66,6 +71,7 @@ namespace WebApp.Data.Repository
             }
             catch (Exception e)
             {
+                await _errorLogRepository.SaveExceptionAsync("ContactRepository", "IsCreatedAsync", e);
                 throw e;
             }
         }
@@ -85,6 +91,7 @@ namespace WebApp.Data.Repository
             }
             catch (Exception e)
             {
+                await _errorLogRepository.SaveExceptionAsync("ContactRepository", "CreateAsync", e);
                 throw e;
             }
 
@@ -106,6 +113,7 @@ namespace WebApp.Data.Repository
             }
             catch (Exception e)
             {
+                await _errorLogRepository.SaveExceptionAsync("ContactRepository", "UpdateAsync", e);
                 throw e;
             }
 
@@ -128,6 +136,7 @@ namespace WebApp.Data.Repository
             }
             catch (Exception e)
             {
+                await _errorLogRepository.SaveExceptionAsync("ContactRepository", "DeleteAsync", e);
                 throw e;
             }
 
@@ -136,26 +145,53 @@ namespace WebApp.Data.Repository
 
         public async Task<int> GetCountYearAsync()
         {
-            DateTime dateTime = DateTime.Now;
+            try
+            {
+                DateTime dateTime = DateTime.Now;
 
-            return await _context.Contacts.CountAsync(x => x.CreationDate.Year >= dateTime.Year && x.CreationDate.Year < (dateTime.Year + 1));
+                return await _context.Contacts.CountAsync(x => x.CreationDate.Year >= dateTime.Year && x.CreationDate.Year < (dateTime.Year + 1));
+            }
+            catch (Exception e)
+            {
+                await _errorLogRepository.SaveExceptionAsync("ContactRepository", "GetCountYearAsync", e);
+            }
+
+            return 0;
         }
 
         public async Task<int> GetCountMouthAsync()
         {
-            DateTime dateTime = DateTime.Now;
+            try
+            {
+                DateTime dateTime = DateTime.Now;
 
-            return await _context.Contacts
-                .CountAsync(x => x.CreationDate.Year >= dateTime.Year && x.CreationDate.Year < (dateTime.Year + 1) &&
-                        x.CreationDate.Month >= dateTime.Month && x.CreationDate.Month < (dateTime.Month + 1));
+                return await _context.Contacts
+                    .CountAsync(x => x.CreationDate.Year >= dateTime.Year && x.CreationDate.Year < (dateTime.Year + 1) &&
+                            x.CreationDate.Month >= dateTime.Month && x.CreationDate.Month < (dateTime.Month + 1));
+            }
+            catch (Exception e)
+            {
+                await _errorLogRepository.SaveExceptionAsync("ContactRepository", "GetCountMouthAsync", e);
+            }
+
+            return 0;
         }
 
         public async Task<int> GetCountTodayAsync()
         {
-            DateTime dateTime = DateTime.Now;
-            DateTime dateStart = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
+            try
+            {
+                DateTime dateTime = DateTime.Now;
+                DateTime dateStart = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
 
-            return await _context.Contacts.CountAsync(x => x.CreationDate >= dateStart && x.CreationDate <= dateTime);
+                return await _context.Contacts.CountAsync(x => x.CreationDate >= dateStart && x.CreationDate <= dateTime);
+            }
+            catch (Exception e)
+            {
+                await _errorLogRepository.SaveExceptionAsync("ContactRepository", "GetCountTodayAsync", e);
+            }
+
+            return 0;
         }
     }
 }

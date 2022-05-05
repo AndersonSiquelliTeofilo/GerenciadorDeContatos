@@ -25,6 +25,7 @@ namespace GerenciadorDeContatos
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddTransient<IContactRepository, ContactRepository>();
+            services.AddTransient<IErrorLogRepository, ErrorLogRepository>();
 
             services.AddControllersWithViews();
         }
@@ -33,7 +34,7 @@ namespace GerenciadorDeContatos
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                app.UseExceptionHandler("/Home/Error");
             }
             else
             {

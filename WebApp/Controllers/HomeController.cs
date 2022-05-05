@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Data.Interfaces;
@@ -9,20 +10,28 @@ namespace GerenciadorDeContatos.Controllers
     public class HomeController : Controller
     {
         private readonly IContactRepository _contactRepository;
+        private readonly IErrorLogRepository _errorLogRepository;
 
-        public HomeController(IContactRepository contactRepository)
+        public HomeController(IContactRepository contactRepository, IErrorLogRepository errorLogRepository)
         {
             _contactRepository = contactRepository;
+            _errorLogRepository = errorLogRepository;
         }
 
         public async Task<IActionResult> Index()
         {
-            DashboardViewModel model = new DashboardViewModel()
+            DashboardViewModel model = new DashboardViewModel();
+
+            try
             {
-                Year = await _contactRepository.GetCountYearAsync(),
-                Mouth = await _contactRepository.GetCountMouthAsync(),
-                Today = await _contactRepository.GetCountTodayAsync()
-            };
+                model.Year = await _contactRepository.GetCountYearAsync();
+                model.Mouth = await _contactRepository.GetCountMouthAsync();
+                model.Today = await _contactRepository.GetCountTodayAsync();
+            }
+            catch (Exception e)
+            {
+                await _errorLogRepository.SaveExceptionAsync("HomeController", "Index", e);
+            }
 
             return View(model);
         }

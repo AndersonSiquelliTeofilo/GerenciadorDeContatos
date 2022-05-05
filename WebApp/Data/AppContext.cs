@@ -10,5 +10,7 @@ namespace WebApp.Data
         }
         
         public DbSet<Contact> Contacts { get; set; }
+
+        public DbSet<ErrorLog> ErrorLogs { get; set; }
     }
 }
