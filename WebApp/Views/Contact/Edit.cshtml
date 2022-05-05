@@ -37,7 +37,7 @@
         <div class="form-group row">
             <label asp-for="BirthDate" class="col-form-label col-lg-2">Data de Nascimento:</label>
             <div class="col-lg-10">
-                <input asp-for="BirthDate" class="form-control" />
+                <input asp-for="BirthDate" class="form-control" min="1900-01-01" max="@DateTime.Now.ToString("yyyy-MM-dd")" />
                 <span asp-validation-for="BirthDate" class="text-danger"></span>
             </div>
         </div>
@@ -53,4 +53,11 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script src="~/lib/jquery.mask/jquery.mask.min.js"></script>
+    
+    <script type="text/javascript">
+        $(document).ready(function(){
+            PhoneNumberMask();
+        });
+    </script>
 }

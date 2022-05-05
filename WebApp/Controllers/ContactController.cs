@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Data.Interfaces;
@@ -31,6 +32,10 @@ namespace WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Contact contact)
         {
+            bool phoneNumberValidation = Regex.IsMatch(contact.PhoneNumber, "\\([0-9]{2}\\)[0-9]{4,5}-[0-9]{4}");
+
+            ModelState.AddModelError("PhoneNumber", "Formato de telefone inválido, tente outro formato, para fixo: (dd)0000-0000 ou para celular (dd)90000-0000");
+
             if (!ModelState.IsValid)
             {
                 return View(contact);
