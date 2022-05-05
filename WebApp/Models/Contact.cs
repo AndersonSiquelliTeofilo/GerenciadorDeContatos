@@ -28,6 +28,13 @@ namespace WebApp.Models
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? BirthDate { get; set; }
 
+        public DateTime CreationDate { get; set; }
+
+        public Contact()
+        {
+            CreationDate = DateTime.Now;
+        }
+
         public string GetFullName()
         {
             return FirstName + " " + LastName;

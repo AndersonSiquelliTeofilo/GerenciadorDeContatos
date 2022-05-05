@@ -19,5 +19,11 @@ namespace WebApp.Data.Interfaces
         Task<bool> UpdateAsync(Contact contact);
 
         Task<bool> DeleteAsync(int id);
+
+        Task<int> GetCountYearAsync();
+
+        Task<int> GetCountMouthAsync();
+
+        Task<int> GetCountTodayAsync();
     }
 }

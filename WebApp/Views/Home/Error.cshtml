@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Erro";
+}
+
+<nav aria-label="breadcrumb mt-0">
+  <ol class="breadcrumb bg-white">
+    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+  </ol>
+</nav>
+<section class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="display-1 text-danger">Oops ...</h1>
+            <h1 class="display-2 text-danger">Algo deu errado, entre em contato com o administrador</h1>
+        </div>
+    </div>
+</section>

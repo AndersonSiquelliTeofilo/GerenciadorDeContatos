@@ -22,6 +22,20 @@ function OpenModalOnClick() {
     });
 }
 
+function Loading() {
+    $("#loading").html(SpinnerHtml());
+}
+
+function RemoveLoading() {
+    $("#loading").html('');
+}
+
+function SpinnerHtml() {
+    return `<div class="spinner-border" role="status">
+                <span class="sr-only"> Loading...</span >
+            </div>`;
+}
+
 // Contact creation or edit
 
 function PhoneNumberMask() {

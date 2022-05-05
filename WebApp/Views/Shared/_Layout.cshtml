@@ -15,16 +15,19 @@
 
     <div class="container">
         <main role="main" class="pb-3">
-            <partial name="_Notification" />
-            <div id="modal-container" class="modal" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-lg" role="document"></div>
-            </div>
+           
             @RenderBody()
+
+            <div class="d-flex justify-content-center">
+                <div id="loading" class="position-relative"></div>
+            </div>
         </main>
     </div>
-
+    <div id="modal-container" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document"></div>
+    </div>
     <footer class="border-top footer text-muted">
-        <div class="container">
+        <div class="container text-center">
             &copy; @DateTime.Now.Year - Gerenciador de Contatos - <a asp-area="" asp-controller="Home" asp-action="About">Sobre</a>
         </div>
     </footer>

@@ -133,5 +133,29 @@ namespace WebApp.Data.Repository
 
             return false;
         }
+
+        public async Task<int> GetCountYearAsync()
+        {
+            DateTime dateTime = DateTime.Now;
+
+            return await _context.Contacts.CountAsync(x => x.CreationDate.Year >= dateTime.Year && x.CreationDate.Year < (dateTime.Year + 1));
+        }
+
+        public async Task<int> GetCountMouthAsync()
+        {
+            DateTime dateTime = DateTime.Now;
+
+            return await _context.Contacts
+                .CountAsync(x => x.CreationDate.Year >= dateTime.Year && x.CreationDate.Year < (dateTime.Year + 1) &&
+                        x.CreationDate.Month >= dateTime.Month && x.CreationDate.Month < (dateTime.Month + 1));
+        }
+
+        public async Task<int> GetCountTodayAsync()
+        {
+            DateTime dateTime = DateTime.Now;
+            DateTime dateStart = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
+
+            return await _context.Contacts.CountAsync(x => x.CreationDate >= dateStart && x.CreationDate <= dateTime);
+        }
     }
 }

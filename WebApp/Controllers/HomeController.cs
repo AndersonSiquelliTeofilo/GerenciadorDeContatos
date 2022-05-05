@@ -1,25 +1,33 @@
 ﻿using System.Diagnostics;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using WebApp.Data.Interfaces;
 using WebApp.Models;
 
 namespace GerenciadorDeContatos.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IContactRepository _contactRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IContactRepository contactRepository)
         {
-            _logger = logger;
+            _contactRepository = contactRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            DashboardViewModel model = new DashboardViewModel()
+            {
+                Year = await _contactRepository.GetCountYearAsync(),
+                Mouth = await _contactRepository.GetCountMouthAsync(),
+                Today = await _contactRepository.GetCountTodayAsync()
+            };
+
+            return View(model);
         }
 
-        public IActionResult Privacy()
+        public IActionResult About()
         {
             return View();
         }

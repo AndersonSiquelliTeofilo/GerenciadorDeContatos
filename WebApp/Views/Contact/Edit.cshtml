@@ -1,9 +1,18 @@
 ﻿@model Contact
+
 @{
     ViewData["Title"] = "Editar contato";
 }
+
+<nav aria-label="breadcrumb mt-0">
+  <ol class="breadcrumb bg-white">
+    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Home</a></li>
+    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Contact")">Contatos</a></li>
+    <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+  </ol>
+</nav>
 <section class="container mb-3">
-    <form asp-action="Edit" method="post">
+    <form asp-action="Edit" method="post" onsubmit="Loading();">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="Id" />
         <div class="form-group row">
@@ -58,6 +67,10 @@
     <script type="text/javascript">
         $(document).ready(function(){
             PhoneNumberMask();
+
+             $("form").bind("invalid-form.validate", function() {
+                RemoveLoading();
+            });
         });
     </script>
 }

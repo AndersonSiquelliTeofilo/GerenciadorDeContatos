@@ -1,9 +1,26 @@
 ﻿@model Contact
+
 @{
     ViewData["Title"] = "Cadastrar contato";
 }
+
+<nav aria-label="breadcrumb mt-0">
+  <ol class="breadcrumb bg-white">
+    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Home</a></li>
+    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Contact")">Contatos</a></li>
+    <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+  </ol>
+</nav>
 <section class="container mb-3">
-    <form id="form-contact" asp-action="Create" method="post">
+    <div class="row">
+        <div class="col-lg-12">
+            <h4>Cadastrar usuário</h4>
+            <p>Para realizar o cadastro preencha os dados abaixo.</p>
+        </div>
+    </div>
+</section>
+<section class="container mb-3">
+    <form id="form-contact" asp-action="Create" method="post" onsubmit="Loading();">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group row">
             <label asp-for="FirstName" class="col-form-label col-lg-2">Primeiro nome:</label>
@@ -53,10 +70,14 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     <script src="~/lib/jquery.mask/jquery.mask.min.js"></script>
-    
+
     <script type="text/javascript">
         $(document).ready(function(){
             PhoneNumberMask();
+
+            $("form").bind("invalid-form.validate", function() {
+                RemoveLoading();
+            });
         });
     </script>
 }

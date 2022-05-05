@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Sobre";
+}
+
+<nav aria-label="breadcrumb mt-0">
+  <ol class="breadcrumb bg-white">
+    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+  </ol>
+</nav>
+<section class="container">
+    <h1 class="mb-3">@ViewData["Title"]</h1>
+    <p class="mb-3">Este site permite o cadastro de uma lista de contatos, de forma que possa ser gerenciada por qualquer usuário.</p>
+    <p class="mb-3">Para realizar o cadastro de um contato, tenha em mãos o nome completo e número de telefone.</p>
+    <p class="mb-3">Caso deseje excluir um usuário, precisa processeguir com a confirmação.</p>
+    <p class="mb-3">Ao informar o número de telefone do usuário, caso inicie com "9" após o DD, será considerado como um número de celular.</p>
+</section>
