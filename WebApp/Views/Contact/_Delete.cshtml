@@ -1,0 +1,46 @@
+﻿@model Contact
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title">Confirmação</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" value="@Model.Id" />
+        <div class="modal-body">
+            <div class="row mb-3">
+                <div class="col-lg-12 text-center"><h4>Deseja realmente deletar este contato?</h4></div>
+            </div>
+            <div class="form-group row">
+                <label for="full-name" class="col-sm-3 col-form-label">Nome completo</label>
+                <div class="col-sm-12 col-md-9">
+                    <input type="text" id="full-name" class="form-control" value="@Model.GetFullName()" readonly >
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="PhoneNumber" class="col-sm-3 col-form-label">Telefone</label>
+                <div class="col-sm-12 col-md-9">
+                    <input asp-for="PhoneNumber" class="form-control" value="@Model.PhoneNumber" readonly >
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Email" class="col-sm-3 col-form-label">E-mail</label>
+                <div class="col-sm-12 col-md-9">
+                    <input asp-for="Email" class="form-control" value="@Model.Email" readonly >
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="BirthDate" class="col-sm-3 col-form-label">Data de Nascimento</label>
+                <div class="col-sm-12 col-md-9">
+                    <input asp-for="BirthDate" class="form-control" value="@Model.BirthDate?.ToString("dd/MM/yyyy")" readonly >
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-danger">Prosseguir</button>
+        </div>
+    </form>
+</div>

@@ -32,9 +32,12 @@ namespace WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Contact contact)
         {
-            bool phoneNumberValidation = Regex.IsMatch(contact.PhoneNumber, "\\([0-9]{2}\\)[0-9]{4,5}-[0-9]{4}");
+            bool phoneNumberValidation = contact.IsValidPhoneNumber();
 
-            ModelState.AddModelError("PhoneNumber", "Formato de telefone inválido, tente outro formato, para fixo: (dd)0000-0000 ou para celular (dd)90000-0000");
+            if (phoneNumberValidation == false)
+            {
+                ModelState.AddModelError("PhoneNumber", "Formato de telefone inválido, tente outro formato, para fixo: (dd)0000-0000 ou para celular (dd)90000-0000");
+            }
 
             if (!ModelState.IsValid)
             {
@@ -66,6 +69,13 @@ namespace WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(Contact contact)
         {
+            bool phoneNumberValidation = contact.IsValidPhoneNumber();
+
+            if (phoneNumberValidation == false)
+            {
+                ModelState.AddModelError("PhoneNumber", "Formato de telefone inválido, tente outro formato, para fixo: (dd)0000-0000 ou para celular (dd)90000-0000");
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(contact);
@@ -88,7 +98,15 @@ namespace WebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            bool deleted = await _contactRepository.DeleteAsync(id);
+            Contact contact = await _contactRepository.GetByIdAsync(id);
+
+            return PartialView("_Delete", contact);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(Contact contact)
+        {
+            bool deleted = await _contactRepository.DeleteAsync(contact.Id);
 
             if (deleted)
             {

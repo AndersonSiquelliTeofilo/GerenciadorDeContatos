@@ -3,9 +3,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - GerenciadorDeContatos</title>
+    <meta name="author" content="Anderson Siquelli Teofilo" />
+    <meta name="description" content="Gerenciador de contatos" />
+    <meta name="keywords" content="Contatos, Gerenciador, Cadastro, Enterprise" />
+    <title>@ViewData["Title"] | Gerenciador de Contatos</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body>
     <partial name="_Navigation" />
@@ -13,14 +16,16 @@
     <div class="container">
         <main role="main" class="pb-3">
             <partial name="_Notification" />
-
+            <div id="modal-container" class="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document"></div>
+            </div>
             @RenderBody()
         </main>
     </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - GerenciadorDeContatos - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; @DateTime.Now.Year - Gerenciador de Contatos - <a asp-area="" asp-controller="Home" asp-action="About">Sobre</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

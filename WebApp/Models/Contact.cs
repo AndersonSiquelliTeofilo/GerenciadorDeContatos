@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
 
 namespace WebApp.Models
 {
@@ -30,6 +31,11 @@ namespace WebApp.Models
         public string GetFullName()
         {
             return FirstName + " " + LastName;
+        }
+
+        public bool IsValidPhoneNumber()
+        {
+            return Regex.IsMatch(PhoneNumber, "\\([0-9]{2}\\)[0-9]{4,5}-[0-9]{4}");
         }
     }
 }
